@@ -1,0 +1,17 @@
+---
+
+- name: JAEGER DOCKER | Create the network
+  docker_network:
+    name: "{{ jaeger_docker_network.name }}"
+    state: "{{ jaeger_docker_network.state }}"
+
+- name: JAEGER DOCKER | Deploy the All in One container
+  docker_container:
+    name: "{{ jaeger_docker.name }}"
+    env: "{{ jaeger_docker.env }}"
+    image: "{{ jaeger_docker.image }}"
+    state: "{{ jaeger_docker.state }}"
+    restart: yes
+    ports: "{{ jaeger_docker.ports }}"
+    networks:
+      - name: "{{ jaeger_docker.network }}"

@@ -1,0 +1,6 @@
+---
+
+dependencies:
+
+  - role: jaeger/docker
+    when: jaeger_install_type == "docker"

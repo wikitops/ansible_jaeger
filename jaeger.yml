@@ -1,0 +1,9 @@
+---
+
+- hosts: jaeger
+  remote_user: vagrant
+  become: yes
+  vars:
+    jaeger_install_type: docker # baremetal / docker
+  roles:
+    - jaeger
