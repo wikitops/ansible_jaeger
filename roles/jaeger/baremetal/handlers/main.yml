@@ -1,0 +1,8 @@
+---
+
+- name: Restart jaeger
+  systemd:
+    name: jaeger-all-in-one
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

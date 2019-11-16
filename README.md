@@ -25,6 +25,25 @@ A good point with Vagrant is that you can create, update and destroy all archite
 
 Be aware that you need to be in the Vagrant directory to be able to run the commands.
 
+#### Baremetal Deployment
+
+To deploy the Jaeger instance on baremetal, you have to configure the variable *jaeger_install_type* to *baremetal* in the file jaeger.yml before running the playbook :
+
+```yaml
+[...]
+vars:
+  jaeger_install_type: baremetal
+[...]
+```
+
+Once it's done, you just have to provision the Vagrant instance and the Ansible playbook will automatically be called :
+
+```bash
+$ vagrant up
+```
+
+If everything run as expected, you should be able to reached the web interface : http://10.0.0.11:16686/
+
 #### Docker Deployment
 
 To deploy the Jaeger instance on Docker, you have to configure the variable *jaeger_install_type* to *docker* in the file jaeger.yml before running the playbook :

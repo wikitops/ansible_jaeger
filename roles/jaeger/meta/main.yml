@@ -2,5 +2,8 @@
 
 dependencies:
 
+  - role: jaeger/baremetal
+    when: jaeger_install_type == "baremetal"
+
   - role: jaeger/docker
     when: jaeger_install_type == "docker"

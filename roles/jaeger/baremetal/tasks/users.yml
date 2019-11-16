@@ -1,0 +1,13 @@
+---
+
+- name: JAEGER BAREMETAL USERS | Manage group
+  group:
+    name: "{{ jaeger_group }}"
+    state: present
+
+- name: JAEGER BAREMETAL USERS | Manage user
+  user:
+    name: "{{ jaeger_user }}"
+    state: present
+    create_home: false
+    system: yes

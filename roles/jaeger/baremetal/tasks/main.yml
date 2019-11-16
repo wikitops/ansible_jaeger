@@ -1,0 +1,32 @@
+---
+
+- name: JAEGER BAREMETAL | Manage user
+  include_tasks: users.yml
+
+- name: JAEGER BAREMETAL | Download and unarchive binaries
+  unarchive:
+    creates: "{{ jaeger_install_dir }}/jaeger-{{ jaeger_version }}-linux-amd64/jaeger-all-in-one"
+    src: "{{ jaeger_binaries_url }}"
+    dest: "{{ jaeger_install_dir }}"
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: yes
+  notify: Restart jaeger
+
+- name: JAEGER BAREMETAL | Ensure symlink exist
+  file:
+    src: "{{ jaeger_install_dir }}/jaeger-{{ jaeger_version }}-linux-amd64/jaeger-all-in-one"
+    dest: "{{ jaeger_link_dir }}/jaeger-all-in-one"
+    owner: root
+    group: root
+    state: link
+
+- name: JAEGER BAREMETAL | Configure Systemd
+  template:
+    src: lib/systemd/system/jaeger-all-in-one.service.j2
+    dest: /lib/systemd/system/jaeger-all-in-one.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart jaeger

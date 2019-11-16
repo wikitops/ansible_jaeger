@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+
+[Service]
+ExecStart={{ jaeger_link_dir }}/jaeger-all-in-one
+Restart=always
+StandardOutput=syslog
+SyslogIdentifier=jaeger-all-in-one
+User={{ jaeger_user }}
+Group={{ jaeger_group }}
+
+[Install]
+WantedBy=multi-user.target

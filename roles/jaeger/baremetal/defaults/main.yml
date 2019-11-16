@@ -1,0 +1,19 @@
+---
+
+###
+# JAEGER
+###
+
+# Version
+jaeger_version: 1.15.1
+
+# Binaries
+jaeger_binaries_url: https://github.com/jaegertracing/jaeger/releases/download/v{{ jaeger_version }}/jaeger-{{ jaeger_version }}-linux-amd64.tar.gz
+
+# Directory
+jaeger_install_dir: /opt
+jaeger_link_dir: /usr/local/bin
+
+# User
+jaeger_group: jaeger
+jaeger_user: jaeger
